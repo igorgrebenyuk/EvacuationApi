@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f5f6f8;
+  color: #1f2430;
+}
+
+header {
+  background: #2f5496;
+  color: #fff;
+  padding: 20px 32px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+main {
+  padding: 24px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Панель инструментов --- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.toolbar label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkbox-label {
+  cursor: pointer;
+}
+
+select,
+input[type="text"],
+input[type="date"] {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #ccd2dc;
+  border-radius: 5px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccd2dc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f0f2f6;
+}
+
+button.primary {
+  background: #2f5496;
+  border-color: #2f5496;
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #24417a;
+}
+
+/* --- Таблица --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+th {
+  background: #f0f2f6;
+  font-weight: 600;
+  font-size: 13px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+tr.expiring td {
+  background: #fff4e5;
+}
+
+td.empty {
+  text-align: center;
+  color: #888;
+  padding: 24px;
+}
+
+td.actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+td.actions button {
+  padding: 4px 9px;
+  margin-left: 4px;
+}
+
+/* --- Статус-бейджи --- */
+
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-InStock       { background: #e3f2e6; color: #1e7d34; }
+.badge-Issued        { background: #e3edfc; color: #1c5cc4; }
+.badge-UnderInspection { background: #fdf0da; color: #a3690f; }
+.badge-WrittenOff    { background: #fbe3e3; color: #b23030; }
+
+/* --- Ошибки --- */
+
+.error {
+  background: #fbe3e3;
+  color: #a11;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* --- Форма (модальное окно) --- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card-form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.card-form h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+.grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: #444;
+}
+
+.grid input,
+.grid select {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Дополнения для модуля эвакуации ===== */
+
+main { max-width: 1280px; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  border-radius: 6px 6px 0 0;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  background: #2f5496;
+  border-color: #2f5496;
+  color: #fff;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.kpi .value { font-size: 28px; font-weight: 700; color: #2f5496; }
+.kpi .label { font-size: 13px; color: #666; margin-top: 2px; }
+.kpi.bad .value { color: #b23030; }
+.kpi.ok .value { color: #1e7d34; }
+
+.warnings {
+  background: #fff4e5;
+  border-left: 4px solid #e69a2e;
+  border-radius: 6px;
+  padding: 10px 14px 10px 18px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.warnings ul { margin: 4px 0 0; padding-left: 18px; }
+.warnings.good { background: #e3f2e6; border-color: #1e7d34; }
+
+h3 { margin: 22px 0 8px; font-size: 16px; }
+
+td.num, th.num { text-align: right; }
+td.bad { color: #b23030; font-weight: 600; }
+td.small { font-size: 13px; color: #555; }
+
+tr.unavailable td { background: #fbe3e3; }
+
+.badge-Own        { background: #e3f2e6; color: #1e7d34; }
+.badge-Contracted { background: #e3edfc; color: #1c5cc4; }
+.badge-Main       { background: #e3f2e6; color: #1e7d34; }
+.badge-Reserve    { background: #fdf0da; color: #a3690f; }
+.badge-Ready      { background: #e3f2e6; color: #1e7d34; }
+.badge-Maintenance, .badge-Unavailable { background: #fbe3e3; color: #b23030; }
+.badge-gray       { background: #eceef2; color: #555; }
+
+.grid .full { grid-column: 1 / -1; }
+.grid label.check { flex-direction: row; align-items: center; }
+.grid label.check input { width: auto; }
+
+select, input[type="number"], textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #ccd2dc;
+  border-radius: 5px;
+}
+textarea { width: 100%; min-height: 70px; resize: vertical; }
+
+.small { font-size: 12px; color: #666; }
+td.small { font-size: 13px; }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Эвакуация — расчёты и планирование</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Расчёты и планирование эвакуации</h1>
+  <p class="subtitle">Сотрудники, транспорт, маршруты, пункты временного размещения</p>
+  <p style="margin:10px 0 0"><a href="/swagger" style="color:#fff;font-size:14px">Swagger API →</a></p>
+</header>
+
+<main>
+  <nav class="tabs" id="tabs">
+    <button data-tab="calc" class="active">Расчёты и план</button>
+    <button data-tab="employees">Сотрудники</button>
+    <button data-tab="vehicles">Транспорт</button>
+    <button data-tab="routes">Маршруты</button>
+    <button data-tab="points">Пункты размещения</button>
+  </nav>
+
+  <p id="errorBox" class="error hidden"></p>
+
+  <!-- ===== Расчёты и план ===== -->
+  <section id="tab-calc">
+    <section class="toolbar">
+      <label>Смена для автораспределения:
+        <select id="planShift">
+          <option value="">Все смены</option>
+          <option value="1">Смена 1</option>
+          <option value="2">Смена 2</option>
+          <option value="3">Смена 3</option>
+        </select>
+      </label>
+      <button id="btnAutoPlan" class="primary">Автораспределение</button>
+      <button id="btnResetPlan">Сбросить план</button>
+      <button id="btnRecalc">Обновить</button>
+    </section>
+
+    <div id="warnings"></div>
+    <div id="kpis" class="kpis"></div>
+
+    <h3>Расчётная таблица по сменам</h3>
+    <table>
+      <thead><tr>
+        <th>Смена</th><th class="num">Всего</th><th class="num">Подлежит эвакуации</th>
+        <th class="num">Маломобильных</th><th class="num">Дефицит мест (транспорт)</th><th class="num">Дефицит мест (размещение)</th>
+      </tr></thead>
+      <tbody id="shiftsBody"></tbody>
+    </table>
+
+    <h3>План: транспорт</h3>
+    <table>
+      <thead><tr>
+        <th>Транспорт</th><th>Госномер</th><th>Водитель</th><th class="num">Мест</th><th class="num">Назначено</th><th>Состав</th>
+      </tr></thead>
+      <tbody id="planVehiclesBody"></tbody>
+    </table>
+
+    <h3>План: пункты размещения</h3>
+    <table>
+      <thead><tr>
+        <th>Пункт</th><th>Адрес</th><th>Контакт</th><th class="num">Вместимость</th><th class="num">Назначено</th>
+      </tr></thead>
+      <tbody id="planPointsBody"></tbody>
+    </table>
+
+    <h3>Без полного назначения</h3>
+    <table>
+      <thead><tr><th>Сотрудник</th><th>Смена</th><th>Транспорт</th><th>Пункт размещения</th></tr></thead>
+      <tbody id="unassignedBody"></tbody>
+    </table>
+  </section>
+
+  <!-- ===== CRUD-вкладки (таблицы строятся из app.js) ===== -->
+  <section id="tab-employees" class="hidden"></section>
+  <section id="tab-vehicles" class="hidden"></section>
+  <section id="tab-routes" class="hidden"></section>
+  <section id="tab-points" class="hidden"></section>
+</main>
+
+<!-- Универсальная форма. Видимость — только через инлайн-стиль display из JS. -->
+<div id="formOverlay" class="overlay" style="display: none;">
+  <form id="entityForm" class="card-form">
+    <h2 id="formTitle"></h2>
+    <p id="formError" class="error hidden"></p>
+    <div id="formGrid" class="grid"></div>
+    <div class="form-actions">
+      <button type="button" id="btnCancel">Отмена</button>
+      <button type="submit" class="primary">Сохранить</button>
+    </div>
+  </form>
+</div>
+
+<input type="file" id="mapInput" accept=".pdf,.png,.jpg,.jpeg" style="display:none" />
+
+<script src="app.js"></script>
+</body>
+</html>
